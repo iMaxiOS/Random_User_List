@@ -19,6 +19,8 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
+    var saveButton: UIBarButtonItem?
+    
     var viewModel: UsersViewModel?
     
     //From UsersVC
@@ -39,7 +41,7 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(barButtonSaveClicked))
+        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(barButtonSaveClicked))
         self.navigationItem.rightBarButtonItem  = saveButton
         
         firstNameTextField.text = dataOfUser?.first.capitalized            ?? dataSavedUser?.first.capitalized
@@ -75,7 +77,12 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
         }
     }
     
-    //MARK: - UITextFieldDelegate
+    //MARK: UITextFieldDelegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save button while editing.
+        saveButton?.isEnabled = false
+    }
+    
     //Should process the press of the Return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
@@ -83,9 +90,8 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
         return true
     }
     
-    //Value transfer
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        updateSaveButtonState()
     }
     
     //String length
@@ -132,6 +138,14 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
         dataOfUser?.phone = info.phone
         dataOfUser?.email = info.email
         dataOfUser?.thumbnail = info.thumbnail
+    }
+    
+    //MARK: Private Methods
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        if ((firstNameTextField.text != "") && (lastNameTextField.text != "") && (emailTextField.text != "") && (phoneTextField.text != "")) {
+            saveButton?.isEnabled = true
+        }
     }
     
     deinit {

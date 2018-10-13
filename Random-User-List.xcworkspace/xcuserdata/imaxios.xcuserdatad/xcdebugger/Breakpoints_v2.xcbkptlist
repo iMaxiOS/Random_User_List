@@ -28,23 +28,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Random-User-List/Controllers/EditViewController/EditViewController.swift"
-            timestampString = "561152749.2787679"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "navSavedUserTVC()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Random-User-List/Controllers/EditViewController/EditViewController.swift"
-            timestampString = "561152749.278878"
+            timestampString = "561156272.7490259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -59,13 +43,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Random-User-List/Controllers/SavedViewController/SavedTableViewController.swift"
-            timestampString = "561152749.279001"
+            filePath = "Random-User-List/Controllers/EditViewController/EditViewController.swift"
+            timestampString = "561156272.749507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "navSavedUserTVC()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -75,13 +59,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Random-User-List/Controllers/SavedViewController/SavedTableViewController.swift"
-            timestampString = "561152749.2790641"
+            filePath = "Random-User-List/Controllers/EditViewController/EditViewController.swift"
+            timestampString = "561156272.74984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "updateSaveButtonState()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

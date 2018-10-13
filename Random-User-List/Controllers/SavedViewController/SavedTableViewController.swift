@@ -13,7 +13,6 @@ protocol SavedTableVCDelegate {
     func fillTheLabelWith(info: UserOfRealm)
 }
 
-
 class SavedTableViewController: UITableViewController {
     
     private enum CellIdentifiers {

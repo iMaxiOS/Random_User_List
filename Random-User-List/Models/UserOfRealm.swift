@@ -31,15 +31,6 @@ extension Results {
     override static func primaryKey() -> String? {
         return "phone"
     }
-    
-    //    convenience init(first: String, last: String, email: String, phone: String, thumbnail: String) {
-    //        self.init()
-    //        self.first = first
-    //        self.last = last
-    //        self.email = email
-    //        self.phone = phone
-    //        self.thumbnail = thumbnail
-    //    }
 }
 
 
