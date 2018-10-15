@@ -56,12 +56,12 @@ extension SavedTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         info = UserOfRealm.listUsers[indexPath.row]
         delegate?.fillTheLabelWith(info: info!)
-        if navigationController?.tabBarController?.selectedIndex == 0 {
-            navigationController?.popViewController(animated: true)
-        } else {
+        if navigationController?.tabBarController?.selectedIndex == 1 {
             let vc = storyboard?.instantiateViewController(withIdentifier: "editVC") as! EditViewController
             vc.dataSavedUser = info
             navigationController?.pushViewController(vc, animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
         }
     }
     

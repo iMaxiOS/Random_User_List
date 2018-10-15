@@ -18,8 +18,7 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    
-    var saveButton: UIBarButtonItem?
+    var saveButton: UIBarButtonItem!
     
     var viewModel: UsersViewModel?
     
