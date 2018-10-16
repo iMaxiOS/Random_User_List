@@ -69,7 +69,6 @@ final class APIManager {
         }
     }
     
-    
     //MARK: Methods
     func getUsersList (_ entryParams: [String : AnyObject], completion: @escaping (JSON) -> Void) {
         requestHandler(#function, urlRequest: Router.UserRequest.getUsersRouter(entryParams), completionHandler: { json in

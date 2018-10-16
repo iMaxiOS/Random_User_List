@@ -61,8 +61,6 @@ extension User {
     }
 }
 
-
-
 //Parse of data
 class ParseHandlerForUser {
     

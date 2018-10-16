@@ -10,12 +10,6 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
-extension Results {
-    func array<T>(ofType: T.Type) -> [T] {
-        return flatMap { $0 as? T }
-    }
-}
-
 //MARK:- Model User
 @objcMembers class UserOfRealm: Object {
     
@@ -32,7 +26,6 @@ extension Results {
         return "phone"
     }
 }
-
 
 //MARK:- Extension
 extension UserOfRealm {
@@ -80,7 +73,6 @@ class ParseHandler {
 }
 
 //MARK:- Methods Realm
-//class DataOfRealm
 extension UserOfRealm {
     
     //All users of Realm

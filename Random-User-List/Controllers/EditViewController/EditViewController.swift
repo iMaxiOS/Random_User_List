@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDelegate {
+class EditViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -19,6 +19,7 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     var saveButton: UIBarButtonItem!
+    var backButton: UIBarButtonItem!
     
     var viewModel: UsersViewModel?
     
@@ -50,6 +51,15 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
         editImageView.sd_setImage(with: URL(string: (dataOfUser?.thumbnail ?? dataSavedUser?.thumbnail)!))
     }
     
+    // MARK: - Navigation unwind
+    @IBAction func unwindindEditVC(segue: UIStoryboardSegue) {
+        if let savedTableViewController = segue.source as? SavedTableViewController,
+            let selectedUserCell = savedTableViewController.infoUnwind {
+            dataOfUser = nil
+            dataSavedUser = selectedUserCell
+        }
+    }
+    
     //MARK: - Save button
     @objc func barButtonSaveClicked(sender: UIBarButtonItem) {
         if let editImageView = editImageView.sd_imageURL() {
@@ -67,12 +77,13 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
     }
     
     func navSavedUserTVC() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "savedTVC") as! SavedTableViewController
-        vc.delegate = self
+        let mainTabController = storyboard?.instantiateViewController(withIdentifier: "mainTabController") as! MainTabController
+        mainTabController.selectedViewController = mainTabController.viewControllers?[1]
+        
         if navigationController?.tabBarController?.selectedIndex == 1 {
             navigationController?.popViewController(animated: true)
         } else {
-            navigationController?.pushViewController(vc, animated: true)
+            present(mainTabController, animated: true, completion: nil)
         }
     }
     
@@ -103,11 +114,6 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
         return updatedText.count <= 30
     }
     
-    
-    @IBAction func changeButtonPressed(_ sender: UIButton) {
-        
-    }
-    
     //MARK: - KeyboardNotifications
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -130,15 +136,6 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
         scrollView.contentOffset = CGPoint.zero
     }
     
-    //Method of Protocol
-    func fillTheLabelWith(info: UserOfRealm) {
-        dataOfUser?.first = info.first
-        dataOfUser?.last = info.last
-        dataOfUser?.phone = info.phone
-        dataOfUser?.email = info.email
-        dataOfUser?.thumbnail = info.thumbnail
-    }
-    
     //MARK: Private Methods
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
@@ -151,3 +148,6 @@ class EditViewController: UIViewController, UITextFieldDelegate, SavedTableVCDel
         removeKeyboardNotifications()
     }
 }
+
+
+

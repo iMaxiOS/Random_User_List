@@ -9,18 +9,14 @@
 import UIKit
 import RealmSwift
 
-protocol SavedTableVCDelegate {
-    func fillTheLabelWith(info: UserOfRealm)
-}
-
 class SavedTableViewController: UITableViewController {
     
     private enum CellIdentifiers {
         static let savedUserTableViewCell = "SavedTableViewCell"
     }
     
-    var delegate: SavedTableVCDelegate?
     var info: UserOfRealm?
+    var infoUnwind: UserOfRealm?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +30,20 @@ class SavedTableViewController: UITableViewController {
         tableView.reloadData()
         navigationItem.hidesBackButton = true
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: segue)
+        let indexPath = self.tableView.indexPathForSelectedRow
+        infoUnwind = UserOfRealm.listUsers[(indexPath?.row)!]
+    }
 }
-
 
 // MARK: - Table view data source
 extension SavedTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserOfRealm.listUsers.count
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,14 +55,11 @@ extension SavedTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        info = UserOfRealm.listUsers[indexPath.row]
-        delegate?.fillTheLabelWith(info: info!)
-        if navigationController?.tabBarController?.selectedIndex == 1 {
+        if infoUnwind == nil {
+            info = UserOfRealm.listUsers[indexPath.row]
             let vc = storyboard?.instantiateViewController(withIdentifier: "editVC") as! EditViewController
             vc.dataSavedUser = info
             navigationController?.pushViewController(vc, animated: true)
-        } else {
-            navigationController?.popViewController(animated: true)
         }
     }
     

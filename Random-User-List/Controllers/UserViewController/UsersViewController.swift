@@ -42,14 +42,12 @@ class UserViewController: UIViewController {
         {
             //Upcoming is set to NewViewController
             let upcoming = segue.destination
-                as! UINavigationController
+                as! EditViewController
             //IndexPath is set to the path that was tapped
             let indexPath = self.tableView.indexPathForSelectedRow
             //Data of User is set to the dataOfUser at the row in the objects array.
             let objectOfUser = viewModel.user(at: (indexPath?.row)!)
-            let targetController = upcoming.topViewController as! EditViewController
-            //The titleStringViaSegue property of NewViewController is set.
-            targetController.dataOfUser = objectOfUser
+            upcoming.dataOfUser = objectOfUser
             //Removes graylight from the cell
             self.tableView.deselectRow(at: indexPath!, animated: true)
         }
