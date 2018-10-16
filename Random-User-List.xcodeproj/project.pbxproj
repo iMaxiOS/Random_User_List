@@ -15,6 +15,9 @@
 		1A27C794215E9CB200A99CA1 /* UserOfRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A27C793215E9CB200A99CA1 /* UserOfRealm.swift */; };
 		1A27C796215EB85300A99CA1 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A27C795215EB85300A99CA1 /* APIManager.swift */; };
 		1A27C798215EB8A600A99CA1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A27C797215EB8A600A99CA1 /* Router.swift */; };
+		1A508D082175EAB3000CC8EC /* ButtonEnablingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A508D072175EAB3000CC8EC /* ButtonEnablingBehavior.swift */; };
+		1A508D0A2175F544000CC8EC /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A508D092175F544000CC8EC /* AlertDisplayer.swift */; };
+		1A508D0C2175F56F000CC8EC /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A508D0B2175F56F000CC8EC /* String+Extensions.swift */; };
 		1A531D392163F8BC00A62BD6 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A531D382163F8BC00A62BD6 /* EditViewController.swift */; };
 		1A5399D72164E98600EAC476 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5399D62164E98600EAC476 /* Constants.swift */; };
 		1A644B7C216FA51E0005AB16 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A644B7B216FA51E0005AB16 /* UITextField+Extension.swift */; };
@@ -39,6 +42,9 @@
 		1A27C793215E9CB200A99CA1 /* UserOfRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOfRealm.swift; sourceTree = "<group>"; };
 		1A27C795215EB85300A99CA1 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		1A27C797215EB8A600A99CA1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		1A508D072175EAB3000CC8EC /* ButtonEnablingBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonEnablingBehavior.swift; sourceTree = "<group>"; };
+		1A508D092175F544000CC8EC /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
+		1A508D0B2175F56F000CC8EC /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1A531D382163F8BC00A62BD6 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		1A5399D62164E98600EAC476 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1A644B7B216FA51E0005AB16 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -97,6 +103,7 @@
 		1A27C77D215E858800A99CA1 /* Random-User-List */ = {
 			isa = PBXGroup;
 			children = (
+				1A508D062175EA81000CC8EC /* Behaviors */,
 				1A644B7A216FA4AF0005AB16 /* Extensions */,
 				1A5399D52164E8E800EAC476 /* Constants */,
 				1A27C791215E96F400A99CA1 /* Networking */,
@@ -139,6 +146,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1A508D062175EA81000CC8EC /* Behaviors */ = {
+			isa = PBXGroup;
+			children = (
+				1A508D072175EAB3000CC8EC /* ButtonEnablingBehavior.swift */,
+			);
+			path = Behaviors;
+			sourceTree = "<group>";
+		};
 		1A531D362163F85600A62BD6 /* UserViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				1A644B7B216FA51E0005AB16 /* UITextField+Extension.swift */,
+				1A508D092175F544000CC8EC /* AlertDisplayer.swift */,
+				1A508D0B2175F56F000CC8EC /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,6 +364,8 @@
 				1A27C796215EB85300A99CA1 /* APIManager.swift in Sources */,
 				1A27C781215E858800A99CA1 /* UsersViewController.swift in Sources */,
 				1A8814F52170DADA00423B43 /* SavedTableViewController.swift in Sources */,
+				1A508D082175EAB3000CC8EC /* ButtonEnablingBehavior.swift in Sources */,
+				1A508D0C2175F56F000CC8EC /* String+Extensions.swift in Sources */,
 				1A27C798215EB8A600A99CA1 /* Router.swift in Sources */,
 				1A27C77F215E858800A99CA1 /* AppDelegate.swift in Sources */,
 				1A667EA3217242A50010E3FA /* MainTabController.swift in Sources */,
@@ -359,6 +378,7 @@
 				1A5399D72164E98600EAC476 /* Constants.swift in Sources */,
 				1A8814F72170DCF100423B43 /* SavedUserTableViewCell.swift in Sources */,
 				1A6616C9216CDD4C00283A98 /* User.swift in Sources */,
+				1A508D0A2175F544000CC8EC /* AlertDisplayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class EditViewController: UIViewController, UITextFieldDelegate {
+class EditViewController: UIViewController, UITextFieldDelegate, AlertDisplayer {
     
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -18,10 +18,13 @@ class EditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    
     var saveButton: UIBarButtonItem!
     var backButton: UIBarButtonItem!
     
     var viewModel: UsersViewModel?
+    
+    private var behavior: ButtonEnablingBehavior!
     
     //From UsersVC
     var dataOfUser: User?
@@ -41,9 +44,26 @@ class EditViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(barButtonSaveClicked))
         self.navigationItem.rightBarButtonItem  = saveButton
         
+        //Behavior textFields
+        behavior = ButtonEnablingBehavior(textFields: [firstNameTextField, lastNameTextField, phoneTextField, emailTextField]) { [unowned self] enable, nameTextField in
+            if enable {
+                self.saveButton.isEnabled = true
+            } else {
+                self.saveButton.isEnabled = false
+                
+                let title = "Attention".localizedString
+                let message = "You entered invalid \(nameTextField)"
+                let action = UIAlertAction(title: "OK".localizedString, style: .default)
+                self.displayAlert(with: title , message: message, actions: [action])
+                
+            }
+        }
+        
+        //Data acquisition
         firstNameTextField.text = dataOfUser?.first.capitalized            ?? dataSavedUser?.first.capitalized
         lastNameTextField.text = dataOfUser?.last.capitalized              ?? dataSavedUser?.last.capitalized
         phoneTextField.text = dataOfUser?.phone                            ?? dataSavedUser?.phone
@@ -88,20 +108,11 @@ class EditViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: UITextFieldDelegate
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Disable the Save button while editing.
-        saveButton?.isEnabled = false
-    }
-    
     //Should process the press of the Return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateSaveButtonState()
     }
     
     //String length
@@ -134,14 +145,6 @@ class EditViewController: UIViewController, UITextFieldDelegate {
     
     @objc func kbWillHide() {
         scrollView.contentOffset = CGPoint.zero
-    }
-    
-    //MARK: Private Methods
-    private func updateSaveButtonState() {
-        // Disable the Save button if the text field is empty.
-        if ((firstNameTextField.text != "") && (lastNameTextField.text != "") && (emailTextField.text != "") && (phoneTextField.text != "")) {
-            saveButton?.isEnabled = true
-        }
     }
     
     deinit {
