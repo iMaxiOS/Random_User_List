@@ -12,9 +12,9 @@ import UIKit
 final class ButtonEnablingBehavior: NSObject {
     let textFields: [UITextField]
     
-    let onChange: (Bool, String) -> Void
+    let onChange: (Bool) -> Void
     
-    init(textFields: [UITextField], onChange: @escaping (Bool, String) -> Void) {
+    init(textFields: [UITextField], onChange: @escaping (Bool) -> Void) {
         self.textFields = textFields
         self.onChange = onChange
         super.init()
@@ -25,7 +25,7 @@ final class ButtonEnablingBehavior: NSObject {
         textFields.forEach { textField in
             textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         }
-        onChange(true, "")
+        onChange(true)
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -36,32 +36,24 @@ final class ButtonEnablingBehavior: NSObject {
                 break
             }
             if textField.placeholder == "Email" {
-                guard isValidEmail(email: textField.text) else {
+                guard textField.isValidEmail(email: textField.text) else {
                     enable = false
                     break
                 }
             }
-            if textField.placeholder == "Phone" {
-                guard isValidPhone(phone: textField.text) else {
+            if textField.placeholder == "Phone number" {
+                guard textField.isValidPhone(phone: textField.text) else {
+                    enable = false
+                    break
+                }
+            }
+            if textField.placeholder == "First name" {
+                guard textField.isValidName(name: textField.text) else {
                     enable = false
                     break
                 }
             }
         }
-        onChange(enable, textField.placeholder!)
-    }
-    
-    //Validate an email for the right format
-    func isValidEmail(email:String?) -> Bool {
-        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
-        return pred.evaluate(with: email)
-    }
-    
-    //Validate an email for the right format
-    func isValidPhone(phone: String?) -> Bool {
-        let regEx = "[0-9]{10,14}"
-        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
-        return pred.evaluate(with: phone)
+        onChange(enable)
     }
 }
